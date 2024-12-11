@@ -122,6 +122,10 @@ a{
   grid-template-columns: repeat(2,1fr);
 }
 
+.grid-four-cols{
+  grid-template-columns: repeat(4,1fr);
+}
+
 /* modelus rules reuuseale */
 
 button{
@@ -175,3 +179,36 @@ height: auto;
 }
 
 /* End Hero Section */
+
+
+/***** analytics Section*****/
+.section-analytics{
+  margin: 9.6rem 0;
+  & .container{
+    background-color: var(--bg-color);
+    border-radius: 1rem;
+
+  }
+  & .grid{
+    color:var(--dark-color);
+
+    & .div1{
+      text-align: center;
+      border-right: 0.2rem solid var(--dark-color);
+      padding-right: 2rem;
+
+      &:last-child{
+        border: none;
+      }
+      & h2{
+        font-size: 4.8rem;
+      }
+      & p{
+        text-transform: capitalize;
+      }
+    }
+  }
+
+}
+
+/***** End analytics Section*****/
