@@ -1,10 +1,14 @@
 .container{
   max-width: 240rem;
   padding: 4.2rem 2.4rem;
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
 }
 ul{
   display: flex;
   gap: 3.2rem;
+}
+.logo-brand{
+  display: flex;
+  justify-content: space-between;
 }
