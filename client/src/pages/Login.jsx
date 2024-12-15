@@ -1,25 +1,54 @@
 // import React from "react";
 
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
+const URL = `http://localhost:5000/api/auth/login`;
 const Login = () => {
-  const [user, SetUser] = useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
   const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
 
-    SetUser({
+    setUser({
       ...user,
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
+    try {
+      const response = await fetch(URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
+      console.log("login r", response);
+
+      if (response.ok) {
+        const res_data = await response.json();
+        console.log("Login Form", res_data);
+
+        alert("Registration successful!");
+        setUser({ email: "", password: "" });
+        //String the tkoen in
+        // localStorage.setItem("token", res_data.token);
+        storeTokenInLS(res_data.token);
+        navigate("/");
+      } else {
+        console.log("Invalid Credential");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (

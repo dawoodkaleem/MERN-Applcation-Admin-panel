@@ -1,7 +1,8 @@
 // import React from "react";
 
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/auth";
 const Register = () => {
   const [user, setUser] = useState({
     username: "",
@@ -9,12 +10,24 @@ const Register = () => {
     phone: "",
     password: "",
   });
-
+  const navigate = useNavigate();
+  const { storeTokenInLS } = useAuth();
+  const [passwordError, setPasswordError] = useState("");
   // handeling the input values
   const handleInput = (e) => {
-    console.log(e);
+    // console.log(e);
     let name = e.target.name;
     let value = e.target.value;
+    if (name === "password") {
+      if (value.length < 6) {
+        setPasswordError(
+          "Password must be at least 6 characters long.",
+          passwordError
+        );
+      } else {
+        setPasswordError("");
+      }
+    }
 
     setUser({
       ...user,
@@ -24,16 +37,61 @@ const Register = () => {
 
   // handling the form submit
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   console.log(user);
+  //   try {
+  //     const response = await fetch(`http://localhost:5000/api/auth/register`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application / json" },
+
+  //       body: JSON.stringify(user),
+  //     });
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log("registeration ", error);
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(user);
-    console.log(user);
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user),
+      });
+      if (response.ok) {
+        const res_data = await response.json();
+        console.log("From server", res_data);
+        //String the tkoen in localStorage
+        storeTokenInLS(res_data.token);
+        setUser({ username: "", email: "", phone: "", password: "" });
+        navigate("/login");
+      }
+
+      // if (!response.ok) {
+      //   const errorData = await response.json(); // Parse error details
+      //   console.error("Error response register:", errorData);
+      //   // alert(errorData.message || "Registration failed");
+      //   return;
+      // }
+
+      const data = await response.json(); // Handle success
+      console.log("Registration successful:", data);
+      alert("Registration successful!");
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
   return (
     <>
       <section>
         <main>
-          <div className="section-registratrion">
+          <div className="section-registration">
             <div className="container grid grid-two-cols">
               <div className="resgistration-image">
                 <img
@@ -44,68 +102,70 @@ const Register = () => {
                 />
               </div>
               {/* let tackeled registration form */}
-              <h1 className="main-heading mb-3">registration form</h1>
-              <br />
-              <form onSubmit={handleSubmit}>
-                <div>
-                  <label htmlFor="username">username</label>
-                  <input
-                    type="text"
-                    name="username"
-                    placeholder="username"
-                    id="username"
-                    required
-                    autoComplete="off"
-                    value={user.username}
-                    onChange={handleInput}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email">email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="enter your email"
-                    id="email"
-                    required
-                    autoComplete="off"
-                    value={user.email}
-                    onChange={handleInput}
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone">Phone</label>
-                  <input
-                    type="number"
-                    name="phone"
-                    placeholder="enter your phone"
-                    id="phone"
-                    required
-                    autoComplete="off"
-                    value={user.phone}
-                    onChange={handleInput}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="password">password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="enter your password"
-                    id="password"
-                    required
-                    autoComplete="off"
-                    value={user.password}
-                    onChange={handleInput}
-                  />
-                </div>
+              <div className="registration-form">
+                <h1 className="main-heading mb-3">registration form</h1>
                 <br />
-                <button type="submit" className="btn btn-submit">
-                  Register Now
-                </button>
-              </form>
+                <form onSubmit={handleSubmit}>
+                  <div>
+                    <label htmlFor="username">username</label>
+                    <input
+                      type="text"
+                      name="username"
+                      placeholder="username"
+                      id="username"
+                      required
+                      autoComplete="off"
+                      value={user.username}
+                      onChange={handleInput}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email">email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="enter your email"
+                      id="email"
+                      required
+                      autoComplete="off"
+                      value={user.email}
+                      onChange={handleInput}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="phone">Phone</label>
+                    <input
+                      type="number"
+                      name="phone"
+                      placeholder="enter your phone"
+                      id="phone"
+                      required
+                      autoComplete="off"
+                      value={user.phone}
+                      onChange={handleInput}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="password">password</label>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="enter your password"
+                      id="password"
+                      required
+                      autoComplete="off"
+                      value={user.password}
+                      onChange={handleInput}
+                    />
+                  </div>
+                  <br />
+                  <button type="submit" className="btn btn-submit">
+                    Register Now
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </main>
