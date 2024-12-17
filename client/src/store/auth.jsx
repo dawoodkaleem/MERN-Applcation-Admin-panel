@@ -15,10 +15,12 @@ export const AuthProvider = ({ children }) => {
     setToken("");
     return localStorage.removeItem("token");
   };
+  // JWT Authtication to get the Currently User loggedin data
 
   AuthProvider.propTypes = {
     children: PropTypes.node.isRequired, // Ensure children is a valid React node
   };
+
   return (
     <AuthContext.Provider value={{ isLoggedIn, storeTokenInLS, LogoutUser }}>
       {children}
