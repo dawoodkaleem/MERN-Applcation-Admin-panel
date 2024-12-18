@@ -117,9 +117,24 @@ a{
   gap: 6.4rem;
 
 }
+/*? layout Rule  */
+
+.container {
+  max-width: 140rem;
+  padding: 4rem 2.4rem;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 6.4rem;
+}
 
 .grid-two-cols{
   grid-template-columns: repeat(2,1fr);
+}
+.grid-three-cols{
+  grid-template-columns: repeat(3,1fr);
 }
 
 .grid-four-cols{
@@ -412,4 +427,11 @@ height: auto;
     height: 0.5rem;
     background-color: var(--btn-color);
   }
+
+
+}
+
+.card{
+  border: solid var(--bg-color);
+  padding: 2rem 4rem;
 }
