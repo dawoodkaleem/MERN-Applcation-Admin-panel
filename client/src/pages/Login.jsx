@@ -31,9 +31,8 @@ const Login = () => {
         body: JSON.stringify(user),
       });
       console.log("login r", response);
-
+      const res_data = await response.json();
       if (response.ok) {
-        const res_data = await response.json();
         console.log("Login Form", res_data);
 
         alert("Registration successful!");
@@ -43,7 +42,7 @@ const Login = () => {
         storeTokenInLS(res_data.token);
         navigate("/");
       } else {
-        console.log("Invalid Credential");
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
     } catch (error) {
       console.error("Network error:", error);

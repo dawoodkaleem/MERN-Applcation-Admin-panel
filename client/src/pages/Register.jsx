@@ -63,25 +63,19 @@ const Register = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(user),
       });
+      const res_data = await response.json();
+      console.log("From server", res_data.message);
       if (response.ok) {
-        const res_data = await response.json();
-        console.log("From server", res_data);
         //String the tkoen in localStorage
         storeTokenInLS(res_data.token);
         setUser({ username: "", email: "", phone: "", password: "" });
+        console.log("Registration successful:", res_data);
+        alert("Registration successful!");
         navigate("/login");
+      } else {
+        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
       }
-
-      // if (!response.ok) {
-      //   const errorData = await response.json(); // Parse error details
-      //   console.error("Error response register:", errorData);
-      //   // alert(errorData.message || "Registration failed");
-      //   return;
-      // }
-
-      const data = await response.json(); // Handle success
-      console.log("Registration successful:", data);
-      alert("Registration successful!");
+      // Handle success
     } catch (error) {
       console.error("Network error:", error);
       alert("An error occurred. Please try again.");
