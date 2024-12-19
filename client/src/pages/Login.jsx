@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
+
 const URL = `http://localhost:5000/api/auth/login`;
 const Login = () => {
   const [user, setUser] = useState({
@@ -35,14 +37,16 @@ const Login = () => {
       if (response.ok) {
         console.log("Login Form", res_data);
 
-        alert("Registration successful!");
+        toast("Registration successful!");
         setUser({ email: "", password: "" });
         //String the tkoen in
         // localStorage.setItem("token", res_data.token);
         storeTokenInLS(res_data.token);
         navigate("/");
       } else {
-        alert(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+        toast.error(
+          res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
       }
     } catch (error) {
       console.error("Network error:", error);
