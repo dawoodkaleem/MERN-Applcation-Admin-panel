@@ -7,6 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [services, setServices] = useState("");
   const storeTokenInLS = (serverToken) => {
+    setToken(serverToken);
     return localStorage.setItem("token", serverToken);
   };
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   };
   // JWT Authtication to get the Currently User loggedin data
 
-  const useAuthentication = async () => {
+  const UseAuthentication = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/auth/user", {
         method: "GET",
@@ -52,8 +53,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getServices();
-    useAuthentication();
+    if (isLoggedIn) {
+      getServices();
+      UseAuthentication();
+    }
   }, []);
 
   AuthProvider.propTypes = {
