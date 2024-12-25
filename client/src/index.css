@@ -435,3 +435,104 @@ height: auto;
   border: solid var(--bg-color);
   padding: 2rem 4rem;
 }
+
+
+/* Admin User table Css */
+/* td{
+  font-size: 1.7rem;
+  letter-spacing: 0.1rem;
+  padding: 3rem;
+  text-align: center;
+  color: var(--dark-color);
+  width: 30rem;
+}
+table{
+  background:#fff;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 7px 29px 0px;
+  border-collapse: collapse;
+  border-radius: 1rem;
+  -webkit-border-radius:1rem;
+}
+
+body tr{
+  display: grid;
+  grid-template-columns: repeat(10rem,1fr);
+  align-items: center;
+  box-shadow: 0 0.3rem 0 grey;
+  margin-bottom: 10px;
+  border-bottom: 4px solid transparent;
+  color:var(--bg-color);
+  &:last-child{
+    box-shadow: none;
+  }
+} */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background-color: var(--btn-color);
+  color: #ffffff;
+}
+
+thead th {
+  text-align: left;
+  padding: 1.6rem;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  letter-spacing: 0.1rem;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s;
+}
+
+tbody tr:hover {
+  background-color: var(--helper-color);
+  color: #ffffff;
+}
+
+tbody td {
+  text-align: left;
+  padding: 1.6rem;
+  font-size: 1.4rem;
+  color: var(--dark-color);
+  letter-spacing: 0.05rem;
+}
+
+tbody td:last-child,
+thead th:last-child {
+  text-align: center;
+}
+
+tbody td a {
+  color: var(--btn-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+tbody td a:hover {
+  color: var(--dark-color);
+}
+
+tbody td button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  border: none;
+  background-color: var(--btn-color);
+  color: #ffffff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+tbody td button:hover {
+  background-color: var(--helper-color);
+}
