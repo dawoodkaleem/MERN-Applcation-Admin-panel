@@ -1,5 +1,6 @@
-import { NavLink } from "react-router-dom";
-
+import { NavLink, Outlet } from "react-router-dom";
+import { FaUser, FaRegListAlt, FaHome } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
 export const AdminLayout = () => {
   return (
     <>
@@ -8,15 +9,24 @@ export const AdminLayout = () => {
           <nav>
             <ul>
               <li>
-                <NavLink to={"/admin/users"}>users</NavLink>
+                <NavLink to={"/admin/users"}>
+                  <FaUser />
+                  users
+                </NavLink>
               </li>
-              <li>contacts</li>
+              <li>
+                <NavLink to={"/admin/contacts"}>
+                  <FaMessage />
+                  contacts
+                </NavLink>
+              </li>
               <li>services</li>
               <li>Home</li>
             </ul>
           </nav>
         </div>
       </header>
+      <Outlet />
     </>
   );
 };
