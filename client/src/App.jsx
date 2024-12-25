@@ -38,7 +38,10 @@ const App = () => {
           <Route path="/service" element={<Service />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
-          <Route path="/admin" element={<AdminLayout />}></Route>
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="users" element={<AdminUsers />} />
+            <Route path="contact" element={<AdminContacts />} />
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
