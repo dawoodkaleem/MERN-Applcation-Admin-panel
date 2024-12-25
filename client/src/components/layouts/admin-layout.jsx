@@ -20,8 +20,18 @@ export const AdminLayout = () => {
                   contacts
                 </NavLink>
               </li>
-              <li>services</li>
-              <li>Home</li>
+              <li>
+                <NavLink to={"/service"}>
+                  <FaRegListAlt />
+                  services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={"/"}>
+                  <FaHome />
+                  Home
+                </NavLink>
+              </li>
             </ul>
           </nav>
         </div>
