@@ -27,17 +27,37 @@ export const AdminUsers = () => {
 
   return (
     <>
-      <div>
-        {users.length > 0 ? (
-          users.map((currUser) => (
-            <h2 key={currUser.id || currUser.username}>
-              {currUser.username || "Unknown User"}
-            </h2>
-          ))
-        ) : (
-          <p>No users available.</p>
-        )}
-      </div>
+      <section className="admin-users-secion">
+        <div className="container">
+          <h1>Admin user Data</h1>
+        </div>
+        <div className="container admin-users">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((cusUser, index) => {
+                return (
+                  <tr key={index}>
+                    <td>{cusUser.username}</td>
+                    <td>{cusUser.email}</td>
+                    <td>{cusUser.phone}</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </>
   );
 };
