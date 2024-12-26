@@ -50,7 +50,9 @@ export const AdminUsers = () => {
                     <td>{cusUser.email}</td>
                     <td>{cusUser.phone}</td>
                     <td>Edit</td>
-                    <td>Delete</td>
+                    <td>
+                      <button>Delete</button>
+                    </td>
                   </tr>
                 );
               })}
