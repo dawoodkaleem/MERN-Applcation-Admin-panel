@@ -34,6 +34,9 @@ export const AdminUsers = () => {
       );
       const data = await response.json();
       console.log(`User After Deletion ${data}`);
+      if (response.ok) {
+        getAllUsersData();
+      }
     } catch (error) {
       console.log(error);
     }
