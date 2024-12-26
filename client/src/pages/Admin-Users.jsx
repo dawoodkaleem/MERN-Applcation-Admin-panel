@@ -21,6 +21,10 @@ export const AdminUsers = () => {
     }
   };
 
+  const deleteUser = (id) => {
+    console.log(id);
+  };
+
   useEffect(() => {
     getAllUsersData();
   }, []);
