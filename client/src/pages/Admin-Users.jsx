@@ -51,7 +51,9 @@ export const AdminUsers = () => {
                     <td>{cusUser.phone}</td>
                     <td>Edit</td>
                     <td>
-                      <button>Delete</button>
+                      <button onClick={() => deleteUser(cusUser._id)}>
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 );
