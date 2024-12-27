@@ -64,17 +64,17 @@ export const AdminUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((cusUser, index) => {
+              {users.map((curUser, index) => {
                 return (
                   <tr key={index}>
-                    <td>{cusUser.username}</td>
-                    <td>{cusUser.email}</td>
-                    <td>{cusUser.phone}</td>
+                    <td>{curUser.username}</td>
+                    <td>{curUser.email}</td>
+                    <td>{curUser.phone}</td>
                     <td>
                       <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
                     </td>
                     <td>
-                      <button onClick={() => deleteUser(cusUser._id)}>
+                      <button onClick={() => deleteUser(curUser._id)}>
                         Delete
                       </button>
                     </td>
