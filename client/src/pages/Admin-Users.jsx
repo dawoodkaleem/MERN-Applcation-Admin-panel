@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
-
+import { Link } from "react-router-dom";
 export const AdminUsers = () => {
   const { authorizationToken } = useAuth();
   const [users, setUsers] = useState([]);
@@ -70,7 +70,9 @@ export const AdminUsers = () => {
                     <td>{cusUser.username}</td>
                     <td>{cusUser.email}</td>
                     <td>{cusUser.phone}</td>
-                    <td>Edit</td>
+                    <td>
+                      <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                    </td>
                     <td>
                       <button onClick={() => deleteUser(cusUser._id)}>
                         Delete
