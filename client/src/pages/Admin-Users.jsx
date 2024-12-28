@@ -72,7 +72,16 @@ export const AdminUsers = () => {
                     <td>{curUser.phone}</td>
                     <td>
                       {/* <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link> */}
-                      <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
+                      {/* <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link> */}
+                      <Link
+                        to={`/admin/users/${curUser._id}/edit`}
+                        onClick={() =>
+                          console.log(
+                            `Navigating to /admin/users/${curUser._id}/edit`
+                          )
+                        }>
+                        Edit
+                      </Link>
                     </td>
                     <td>
                       <button onClick={() => deleteUser(curUser._id)}>
