@@ -75,6 +75,21 @@ const Admin_Update = () => {
                 required
               />
             </div>
+            <div>
+              <lable htmlFor="phone">phone</lable>
+              <input
+                type="phone"
+                name="phone"
+                id="phone"
+                autoComplete="off"
+                value={data.phone}
+                onChange={handelInput}
+                required
+              />
+            </div>
+            <div>
+              <button type="submit">Update</button>
+            </div>
           </form>
         </secction>
       </div>
