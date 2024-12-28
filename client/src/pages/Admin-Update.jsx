@@ -44,6 +44,7 @@ const Admin_Update = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(data, "Dawood dawoodaddadad");
     try {
       const response = await fetch(
         `http://localhost:5000/api/admin/users/update/${params.id}`,
@@ -53,13 +54,15 @@ const Admin_Update = () => {
             "Content-Type": "application/json",
             Authorization: authorizationToken,
           },
+
           body: JSON.stringify(data),
         }
       );
       if (response.ok) {
         toast.success("Updated  successfully");
       } else {
-        toast.error("Not Updated");
+        const errorData = await response.json();
+        toast.error(errorData.message || "Not Updated");
       }
     } catch (error) {
       console.log(error);
@@ -73,7 +76,7 @@ const Admin_Update = () => {
       {/* Contact page main*/}
       <div className="container grid grid-two-cols">
         {/* */}
-        <secction className="section-form">
+        <section className="section-form">
           <form onSubmit={handleSubmit}>
             <div>
               <lable htmlFor="username">username</lable>
@@ -115,7 +118,7 @@ const Admin_Update = () => {
               <button type="submit">Update</button>
             </div>
           </form>
-        </secction>
+        </section>
       </div>
     </section>
   );
