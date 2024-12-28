@@ -71,6 +71,7 @@ export const AdminUsers = () => {
                     <td>{curUser.email}</td>
                     <td>{curUser.phone}</td>
                     <td>
+                      {/* <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link> */}
                       <Link to={`/admin/users/${curUser._id}/edit`}>Edit</Link>
                     </td>
                     <td>

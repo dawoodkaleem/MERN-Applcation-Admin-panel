@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 const Admin_Update = () => {
   const [data, setData] = useState({
     username: "",
@@ -9,7 +10,7 @@ const Admin_Update = () => {
   });
   const params = useParams();
   console.log("params single user:", params);
-  const authorizationToken = useAuth();
+  const { authorizationToken } = useAuth();
 
   const getSingleUserData = async () => {
     try {
@@ -49,10 +50,17 @@ const Admin_Update = () => {
         {
           method: "PATCH",
           headers: {
+            "Content-Type": "application/json",
             Authorization: authorizationToken,
           },
+          body: JSON.stringify(data),
         }
       );
+      if (response.ok) {
+        toast.success("Updated  successfully");
+      } else {
+        toast.error("Not Updated");
+      }
     } catch (error) {
       console.log(error);
     }
