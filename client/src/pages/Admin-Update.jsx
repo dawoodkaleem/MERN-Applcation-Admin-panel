@@ -33,13 +33,29 @@ const Admin_Update = () => {
   useEffect(() => {
     getSingleUserData();
   }, []);
-  const handelInput = (e) => {
+  const handleInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setData({
       ...data,
       [name]: value,
     });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/update/${params.id}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <section className="section-contact">
@@ -50,7 +66,7 @@ const Admin_Update = () => {
       <div className="container grid grid-two-cols">
         {/* */}
         <secction className="section-form">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <lable htmlFor="username">username</lable>
               <input
@@ -59,7 +75,7 @@ const Admin_Update = () => {
                 id="username"
                 autoComplete="off"
                 value={data.username}
-                onChange={handelInput}
+                onChange={handleInput}
                 required
               />
             </div>
@@ -71,7 +87,7 @@ const Admin_Update = () => {
                 id="email"
                 autoComplete="off"
                 value={data.email}
-                onChange={handelInput}
+                onChange={handleInput}
                 required
               />
             </div>
@@ -83,7 +99,7 @@ const Admin_Update = () => {
                 id="phone"
                 autoComplete="off"
                 value={data.phone}
-                onChange={handelInput}
+                onChange={handleInput}
                 required
               />
             </div>
