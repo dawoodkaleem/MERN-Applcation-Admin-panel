@@ -1,0 +1,85 @@
+import { useEffect, useState } from "react";
+import { useAuth } from "../store/auth";
+import { useParams } from "react-router-dom";
+const Admin_Update = () => {
+  const [data, setData] = useState({
+    username: "",
+    email: "",
+    phone: "",
+  });
+  const params = useParams();
+  console.log("params single user:", params);
+  const authorizationToken = useAuth();
+
+  const getSingleUserData = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/admin/users/${params.id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: authorizationToken,
+          },
+        }
+      );
+      const data = await response.json();
+      console.log(`users single data:${data}`);
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getSingleUserData();
+  }, []);
+  const handelInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+  return (
+    <section className="section-contact">
+      <div className="contact-content container">
+        <h1 className="main-heading">Update User Data</h1>
+      </div>
+      {/* Contact page main*/}
+      <div className="container grid grid-two-cols">
+        {/* */}
+        <secction className="section-form">
+          <form>
+            <div>
+              <lable htmlFor="username">username</lable>
+              <input
+                type=" text"
+                name="username"
+                id="username"
+                autoComplete="off"
+                value={data.username}
+                onChange={handelInput}
+                required
+              />
+            </div>
+            <div>
+              <lable htmlFor="email">email</lable>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                autoComplete="off"
+                value={data.email}
+                onChange={handelInput}
+                required
+              />
+            </div>
+          </form>
+        </secction>
+      </div>
+    </section>
+  );
+};
+
+export default Admin_Update;
