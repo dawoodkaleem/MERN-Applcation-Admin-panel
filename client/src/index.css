@@ -536,3 +536,50 @@ tbody td button {
 tbody td button:hover {
   background-color: var(--helper-color);
 }
+/* ----------------------------- */
+/* Admin Contacts Sectionn  */
+/* ----------------------------- */
+.admin-contacts-section {
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+}
+
+.admin-contacts-section h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.admin-users > div {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-users > div p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.admin-users > div .btn {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.admin-users > div .btn:hover {
+  background-color: #0056b3;
+}
+
